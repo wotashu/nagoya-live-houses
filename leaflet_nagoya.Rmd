@@ -1,0 +1,35 @@
+---
+title: "Nagoya Live Houses"
+author: "Jonathan Lin"
+date: "October 7, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is a leaflet map of some live house venues in Nagoya, Aichi, Japan.
+
+
+```{r Data, echo=FALSE}
+df <- data.frame(
+    venue = c("Nagoya live house M.I.D", "X-HALL -ZEN-/THEATER OSU", "Fushimi Lion Theater", "Dear Stage Nagoya", "Rad Hall"),
+    lng = c(136.903896, 136.902098, 136.8956, 136.900741, 136.906679),
+    lat = c(35.160755, 35.160078, 35.164704, 35.141832, 35.161377 ),
+    stringsAsFactors = FALSE
+)
+df
+```
+
+## Created October 7, 2018
+
+```{r pressure, echo=FALSE}
+library(leaflet)
+m <- leaflet(df) %>%
+    addTiles() %>%
+    addMarkers(~lng, ~lat, popup= ~venue)
+m
+```
